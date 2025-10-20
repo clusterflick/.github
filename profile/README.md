@@ -5,6 +5,7 @@ This is the Github org managing code which powers ClusterFlick.com &mdash; Just 
 [![Data Retrieved status](https://github.com/clusterflick/data-retrieved/actions/workflows/retrieve.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions)
 [![Data Transformed status](https://github.com/clusterflick/data-transformed/actions/workflows/transform.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions)
 [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
+[![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions)
 
 [![Calendar generated status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
 [![Website generated status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
@@ -17,6 +18,7 @@ flowchart LR
     transformed["data-transformed"]
     calendar["data-calendar"]
     combined["data-combined"]
+    matched["data-matched"]
 
     subgraph retrival[" "]
     direction TB
@@ -38,6 +40,11 @@ flowchart LR
         combined --> combined-release>Release]
     end
 
+    subgraph matching[" "]
+    direction TB
+        matched --> matched-release>Release]
+    end
+
     subgraph website[" "]
     direction TB
         clusterflick.com --> id1[[Generate website]]
@@ -46,8 +53,8 @@ flowchart LR
     retrival --triggers--> transformation
     transformation --triggers--> calendars
     transformation --triggers--> combination
-    combination --triggers--> website
-    
+    combination --triggers--> matching
+    matching --triggers--> website
 
 ```
 
