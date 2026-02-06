@@ -14,31 +14,6 @@ This is the Github org for the code that powers ClusterFlick 🍿
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions) _(triggers website only if new data)_
    - [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
 
-## Tooling Status
-
-### Development
-
-- [![Website CI](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml)
-- [![Scripts CI](https://github.com/clusterflick/scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/ci.yml)
-
-### Social Media / Spotlights
-
-- [![Generate Last Chance](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-last-chance.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-last-chance.yml)
-- [![Generate New Films](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-new-films.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-new-films.yml)
-- [![Generate Single Movie](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-single-movie.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-single-movie.yml)
-
-### Data Maintenance
-
-- [![Update TMDB Data](https://github.com/clusterflick/themoviedb-data/actions/workflows/update.yml/badge.svg)](https://github.com/clusterflick/themoviedb-data/actions/workflows/update.yml)
-- [![Check Venue Statuses](https://github.com/clusterflick/data-analysed/actions/workflows/check-statuses.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/check-statuses.yml)
-- [![Update Test Titles](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml)
-
-### Self-hosted Runner Maintenance
-
-- [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
-- [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
-- [![Check SD Card Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml)
-
 ## Pipeline
 
 ```mermaid
@@ -94,3 +69,29 @@ flowchart LR
     matching --"triggers (if new data)"--> website
 
 ```
+
+## Tooling Status
+
+### Development
+
+- [![Website CI](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml)
+- [![Scripts CI](https://github.com/clusterflick/scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/ci.yml)
+
+### Social Media / Spotlights
+
+- [![Generate Last Chance](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-last-chance.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-last-chance.yml)
+- [![Generate New Films](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-new-films.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-new-films.yml)
+- [![Generate Single Movie](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-single-movie.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/generate-single-movie.yml)
+
+### Data Maintenance
+
+- [![Update TMDB Data](https://github.com/clusterflick/themoviedb-data/actions/workflows/update.yml/badge.svg)](https://github.com/clusterflick/themoviedb-data/actions/workflows/update.yml)
+- [![Check Venue Statuses](https://github.com/clusterflick/data-analysed/actions/workflows/check-statuses.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/check-statuses.yml)
+- [![Update Test Titles](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml)
+
+### Self-hosted Runner Maintenance
+
+- [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
+- [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
+- [![Check SD Card Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml)
+
