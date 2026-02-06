@@ -13,6 +13,7 @@ This is the Github org for the code that powers ClusterFlick 🍿
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions) _(triggers website only if new data)_
    - [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
+   - [![Analysis site status](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions)
 
 ## Pipeline
 
@@ -58,6 +59,7 @@ flowchart LR
     subgraph website[" "]
         direction TB
         clusterflick.com --> id1[[Generate website]]
+        analysis["analysis.clusterflick.com"] --> id2[[Generate analysis site]]
     end
 
     retrival --triggers--> transformation
@@ -67,6 +69,7 @@ flowchart LR
     combination --triggers--> matching
     combination --triggers--> website
     matching --"triggers (if new data)"--> website
+    combination --triggers--> analysis
 
 ```
 
@@ -94,4 +97,3 @@ flowchart LR
 - [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
 - [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
 - [![Check SD Card Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml)
-
