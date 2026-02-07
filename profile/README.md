@@ -11,9 +11,9 @@ This is the Github org for the code that powers ClusterFlick 🍿
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
    - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
-   - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions) _(triggers website only if new data)_
-   - [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
-   - [![Analysis site status](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions)
+   - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions) _(triggers website if not skipped)_
+   - `clusterflick.com` [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
+   - `analysis.clusterflick.com` [![Analysis site status](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions)
 
 ## Pipeline
 
@@ -77,8 +77,8 @@ flowchart LR
 
 ### Development
 
-- [![Website CI](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml)
-- [![Scripts CI](https://github.com/clusterflick/scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/ci.yml)
+- `scripts` [![Scripts CI](https://github.com/clusterflick/scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/ci.yml)
+- `clusterflick.com` [![Website CI](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml)
 
 ### Social Media / Spotlights
 
