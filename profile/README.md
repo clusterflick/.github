@@ -90,6 +90,7 @@ flowchart LR
 
 - [![Update TMDB Data](https://github.com/clusterflick/themoviedb-data/actions/workflows/update.yml/badge.svg)](https://github.com/clusterflick/themoviedb-data/actions/workflows/update.yml)
 - [![Check Venue Statuses](https://github.com/clusterflick/data-analysed/actions/workflows/check-statuses.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/check-statuses.yml)
+- [![Compare Releases](https://github.com/clusterflick/data-analysed/actions/workflows/compare-releases.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-releases.yml)
 - [![Update Test Titles](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml)
 
 ### Self-hosted Runner Maintenance
