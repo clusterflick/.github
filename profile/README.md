@@ -10,6 +10,7 @@ This is the Github org for the code that powers ClusterFlick 🍿
 2. [![Data Transformed status](https://github.com/clusterflick/data-transformed/actions/workflows/transform.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions)
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
    - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
+   - _also triggers `scripts` and `data-analysed`_
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions) _(triggers website if not skipped)_
    - `clusterflick.com` [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
@@ -25,6 +26,8 @@ flowchart LR
     cached["data-cached"]
     combined["data-combined"]
     matched["data-matched"]
+    scripts["scripts"]
+    analysed["data-analysed"]
 
     subgraph retrival[" "]
         direction TB
@@ -65,6 +68,8 @@ flowchart LR
     retrival --triggers--> transformation
     transformation --triggers--> calendars
     transformation --triggers--> caching
+    transformation --triggers--> scripts
+    transformation --triggers--> analysed
     caching --triggers--> combination
     combination --triggers--> matching
     combination --triggers--> website
