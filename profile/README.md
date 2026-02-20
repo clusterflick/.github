@@ -106,6 +106,8 @@ flowchart LR
   _(after each transform)_
 - [![Compare Accessible Screenings](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml)
   _(after each transform)_
+- [![Compare CinemaGuide Screenings](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml)
+  _(after each transform)_
 - [![Update Test Titles](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml)
   _(after each transform)_
 
