@@ -1,0 +1,49 @@
+name: zizmor
+
+# Reusable workflow that audits a repository's GitHub Actions workflows with
+# zizmor (https://docs.zizmor.sh). Other repos call it via:
+#
+#   jobs:
+#     zizmor:
+#       uses: clusterflick/.github/.github/workflows/zizmor.yml@main
+#       permissions:
+#         contents: read
+#
+# The push/pull_request triggers below let this repo audit its own workflows.
+
+on:
+  workflow_call:
+    inputs:
+      persona:
+        description: "zizmor auditing persona: regular, pedantic, or auditor"
+        type: string
+        default: regular
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  audit:
+    name: Audit workflows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: zizmorcore/zizmor-action@v0.5.6
+        with:
+          persona: ${{ inputs.persona || 'regular' }}
+          # Fail the job (and so the PR check) when zizmor reports findings,
+          # and surface them as inline annotations on the diff. To instead
+          # upload SARIF to the GitHub Security tab, set advanced-security to
+          # true, drop annotations, and add `security-events: write` to the
+          # job permissions above (note: in that mode the job no longer fails
+          # on findings — gate via a branch ruleset instead).
+          advanced-security: false
+          annotations: true
