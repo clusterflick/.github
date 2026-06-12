@@ -11,8 +11,9 @@ Org-level configuration and reusable workflows for the `clusterflick` org.
 common GitHub Actions security issues (template injection, dangerous triggers,
 excessive `permissions`, credential persistence, unpinned actions, …).
 
-It fails the job — and therefore the PR check — when zizmor reports findings,
-and annotates them inline on the diff.
+It fails the job — and therefore the PR check — on **medium or higher** findings
+(via `min-severity: medium`) and annotates them inline on the diff. Low /
+informational advisories still appear in the run logs but don't block.
 
 **Add it to a repo** by creating `.github/workflows/zizmor.yml`:
 

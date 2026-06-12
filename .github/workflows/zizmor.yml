@@ -57,6 +57,10 @@ jobs:
         with:
           persona: ${{ inputs.persona || 'regular' }}
           config: zizmor-policy.yml
+          # Only fail the gate on medium+ findings. Low/informational
+          # advisories (e.g. step-output template expansion, "use gh release
+          # instead of an action") still appear in the logs but don't block.
+          min-severity: medium
           # Fail the job (and so the PR check) when zizmor reports findings,
           # and surface them as inline annotations on the diff. To instead
           # upload SARIF to the GitHub Security tab, set advanced-security to
