@@ -36,9 +36,23 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+      - name: Write shared zizmor policy
+        # Org-wide policy, kept here so it applies to every repo that calls
+        # this workflow without needing a .github/zizmor.yml in each one.
+        # ref-pin: allow tag/branch refs (e.g. @v6) instead of requiring a
+        # commit hash. Note this also permits moving refs like @latest/@main.
+        run: |
+          cat > "${RUNNER_TEMP}/zizmor.yml" <<'EOF'
+          rules:
+            unpinned-uses:
+              config:
+                policies:
+                  "*": ref-pin
+          EOF
       - uses: zizmorcore/zizmor-action@v0.5.6
         with:
           persona: ${{ inputs.persona || 'regular' }}
+          config: ${{ runner.temp }}/zizmor.yml
           # Fail the job (and so the PR check) when zizmor reports findings,
           # and surface them as inline annotations on the diff. To instead
           # upload SARIF to the GitHub Security tab, set advanced-security to

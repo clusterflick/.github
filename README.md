@@ -42,6 +42,13 @@ jobs:
 | --------- | --------- | ------------------------------------------------------ |
 | `persona` | `regular` | zizmor persona: `regular`, `pedantic`, or `auditor`.   |
 
+**Policy:** the workflow applies an org-wide zizmor policy (written inline in
+the reusable workflow and passed via `--config`) that sets `unpinned-uses` to
+`ref-pin` — actions may be pinned to a tag/branch (e.g. `@v6`) rather than a
+commit hash. This also permits moving refs like `@latest`, so pin those by hand
+where you can. To enforce hashes for a specific source, add a more specific
+policy entry (e.g. `chromaui/*: hash-pin`).
+
 **Make it a required check:** in each repo's branch protection / ruleset for
 `main`, mark the `Audit workflows` check as required so PRs can't merge while
 zizmor reports findings.
