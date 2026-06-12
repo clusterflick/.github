@@ -41,8 +41,12 @@ jobs:
         # this workflow without needing a .github/zizmor.yml in each one.
         # ref-pin: allow tag/branch refs (e.g. @v6) instead of requiring a
         # commit hash. Note this also permits moving refs like @latest/@main.
+        #
+        # The action runs zizmor in a container that mounts only
+        # GITHUB_WORKSPACE (at /workspace, its cwd), so the config has to live
+        # in the workspace and be passed as a workspace-relative path.
         run: |
-          cat > "${RUNNER_TEMP}/zizmor.yml" <<'EOF'
+          cat > "${GITHUB_WORKSPACE}/zizmor-policy.yml" <<'EOF'
           rules:
             unpinned-uses:
               config:
@@ -52,7 +56,7 @@ jobs:
       - uses: zizmorcore/zizmor-action@v0.5.6
         with:
           persona: ${{ inputs.persona || 'regular' }}
-          config: ${{ runner.temp }}/zizmor.yml
+          config: zizmor-policy.yml
           # Fail the job (and so the PR check) when zizmor reports findings,
           # and surface them as inline annotations on the diff. To instead
           # upload SARIF to the GitHub Security tab, set advanced-security to
