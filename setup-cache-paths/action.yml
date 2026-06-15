@@ -1,0 +1,21 @@
+name: Setup cache paths
+description: On self-hosted runners, points npm and Playwright caches at the runner's SSD cache root, failing loudly if misconfigured. No-op on GitHub-hosted runners.
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        if [ "$RUNNER_ENVIRONMENT" != "self-hosted" ]; then
+          echo "GitHub-hosted runner detected; using default cache locations."
+          exit 0
+        fi
+        if [ -z "$RUNNER_CACHE_ROOT" ]; then
+          echo "::error::RUNNER_CACHE_ROOT is not set on this self-hosted runner. Add it to actions-runner/.env and restart the runner service."
+          exit 1
+        fi
+        if [ ! -d "$RUNNER_CACHE_ROOT" ] || [ ! -w "$RUNNER_CACHE_ROOT" ]; then
+          echo "::error::RUNNER_CACHE_ROOT ($RUNNER_CACHE_ROOT) is not a writable directory. Is the SSD mounted?"
+          exit 1
+        fi
+        echo "npm_config_cache=$RUNNER_CACHE_ROOT/.npm-cache" >> "$GITHUB_ENV"
+        echo "PLAYWRIGHT_BROWSERS_PATH=$RUNNER_CACHE_ROOT/playwright-browsers" >> "$GITHUB_ENV"
