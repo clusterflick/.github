@@ -115,4 +115,4 @@ flowchart LR
 
 - [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
 - [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
-- [![Check SD Card Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml)
+- [![Check SSD Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml)
