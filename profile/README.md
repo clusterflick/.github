@@ -116,3 +116,30 @@ flowchart LR
 - [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
 - [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
 - [![Check SSD Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml)
+
+## Security Audit (zizmor)
+
+Each repo audits its GitHub Actions workflows with [zizmor](https://docs.zizmor.sh) via the shared [`.github`](https://github.com/clusterflick/.github/blob/main/.github/workflows/zizmor.yml) reusable workflow.
+
+### Pipeline
+
+- [![data-retrieved zizmor](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml)
+- [![data-transformed zizmor](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml)
+- [![data-calendar zizmor](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml)
+- [![data-cached zizmor](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml)
+- [![data-combined zizmor](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml)
+- [![data-matched zizmor](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml)
+- [![data-analysed zizmor](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml)
+
+### Websites
+
+- [![clusterflick.com zizmor](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml)
+- [![analysis.clusterflick.com zizmor](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml)
+
+### Tooling
+
+- [![.github zizmor](https://github.com/clusterflick/.github/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/.github/actions/workflows/zizmor.yml)
+- [![scripts zizmor](https://github.com/clusterflick/scripts/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/zizmor.yml)
+- [![generate-spotlights zizmor](https://github.com/clusterflick/generate-spotlights/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/zizmor.yml)
+- [![self-hosted-workflows zizmor](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/zizmor.yml)
+- [![release-downloader zizmor](https://github.com/clusterflick/release-downloader/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/release-downloader/actions/workflows/zizmor.yml)
