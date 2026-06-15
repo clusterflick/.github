@@ -4,7 +4,10 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: |
+      # The GITHUB_ENV writes below only ever contain $RUNNER_CACHE_ROOT, a
+      # trusted path set in the self-hosted runner's own .env — never any
+      # untrusted input — so the github-env audit is a false positive here.
+      run: | # zizmor: ignore[github-env]
         if [ "$RUNNER_ENVIRONMENT" != "self-hosted" ]; then
           echo "GitHub-hosted runner detected; using default cache locations."
           exit 0
