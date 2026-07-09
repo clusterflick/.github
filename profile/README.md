@@ -104,9 +104,9 @@ flowchart LR
   _(manual)_
 - [![Compare Releases](https://github.com/clusterflick/data-analysed/actions/workflows/compare-releases.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-releases.yml)
   _(after each transform)_
-- [![Compare Accessible Screenings](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml)
+- [![Compare Accessible Screenings](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/compare-accessible-screenings.json)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml)
   _(after each transform)_
-- [![Compare CinemaGuide Screenings](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml)
+- [![Compare CinemaGuide Screenings](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/compare-cinemaguide-screenings.json)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml)
   _(after each transform)_
 - [![Update Test Titles](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml)
   _(after each transform)_
