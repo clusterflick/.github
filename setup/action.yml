@@ -1,5 +1,5 @@
 name: Setup
-description: Checkout, Node, cache paths, and a network-resilient dependency install for Clusterflick pipeline jobs. Retries npm install (and, optionally, the Playwright browser download) so a transient registry blip doesn't fail the whole job.
+description: Checkout, Node, and a network-resilient dependency install for Clusterflick pipeline jobs. Installs dependencies, forces the scripts git dependency to its latest commit, and reports that commit. Retries npm install (and, optionally, the Playwright browser download) so a transient registry blip doesn't fail the whole job.
 inputs:
   playwright:
     description: Set to "true" to install Playwright browsers with system dependencies (for jobs that scrape via a browser).
@@ -22,7 +22,24 @@ runs:
         retry_wait_seconds: 30
         # --fetch-retries adds npm's own internal retry as a first line of
         # defence; the retry wrapper catches the cases npm still gives up on.
-        command: npm install --fetch-retries 5 --fetch-retry-maxtimeout 120000
+        command: npm install --no-audit --no-fund --fetch-retries 5 --fetch-retry-maxtimeout 120000
+    - name: Update to the latest scripts
+      uses: nick-fields/retry@v4
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        retry_wait_seconds: 30
+        # Freshness guarantee. `npm install` won't re-resolve a git dep's ref
+        # when the commit is already in the (SSD-warm) npm cache, so a plain
+        # install can leave a stale scripts in node_modules -- which the
+        # pipeline then runs. `npm update` re-checks the remote and rewrites the
+        # pin. data-analysed is a nested git dep of scripts; same reason.
+        command: npm update --no-audit --no-fund scripts data-analysed
+    - name: Report the installed scripts commit
+      shell: bash
+      # Printed up front so the commit the job installed can be compared
+      # against the sha each scripts command reports as it runs.
+      run: node -p "require('./node_modules/.package-lock.json').packages['node_modules/scripts'].resolved"
     - name: Install Playwright browsers
       if: inputs.playwright == 'true'
       uses: nick-fields/retry@v4
