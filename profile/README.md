@@ -10,6 +10,8 @@ This is the Github org for the code that powers ClusterFlick 🍿
 2. [![Data Transformed status](https://github.com/clusterflick/data-transformed/actions/workflows/transform.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions)
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
    - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
+   - [![Data Diffed status](https://github.com/clusterflick/data-diffed/actions/workflows/diff.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions)
+     _(only releases when something changed)_
    - _also triggers `scripts` and `data-analysed`_
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions)
@@ -27,6 +29,7 @@ flowchart LR
     transformed["data-transformed"]
     calendar["data-calendar"]
     cached["data-cached"]
+    diffed["data-diffed"]
     combined["data-combined"]
     matched["data-matched"]
     scripts["scripts"]
@@ -52,6 +55,11 @@ flowchart LR
         cached --> cached-release>Release]
     end
 
+    subgraph diffing[" "]
+        direction TB
+        diffed --"if changed"--> diffed-release>Release]
+    end
+
     subgraph combination[" "]
         direction TB
         combined --> combined-release>Release]
@@ -71,6 +79,7 @@ flowchart LR
     retrival --triggers--> transformation
     transformation --triggers--> calendars
     transformation --triggers--> caching
+    transformation --triggers--> diffing
     transformation --triggers--> scripts
     transformation --triggers--> analysed
     caching --triggers--> combination
@@ -127,6 +136,7 @@ Each repo audits its GitHub Actions workflows with [zizmor](https://docs.zizmor.
 - [![data-transformed zizmor](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml)
 - [![data-calendar zizmor](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml)
 - [![data-cached zizmor](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml)
+- [![data-diffed zizmor](https://github.com/clusterflick/data-diffed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions/workflows/zizmor.yml)
 - [![data-combined zizmor](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml)
 - [![data-matched zizmor](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml)
 - [![data-analysed zizmor](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml)

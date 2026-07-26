@@ -39,9 +39,9 @@ jobs:
 
 **Inputs:**
 
-| Input     | Default   | Description                                            |
-| --------- | --------- | ------------------------------------------------------ |
-| `persona` | `regular` | zizmor persona: `regular`, `pedantic`, or `auditor`.   |
+| Input     | Default   | Description                                          |
+| --------- | --------- | ---------------------------------------------------- |
+| `persona` | `regular` | zizmor persona: `regular`, `pedantic`, or `auditor`. |
 
 **Policy:** the workflow applies an org-wide zizmor policy (written inline in
 the reusable workflow and passed via `--config`) that sets `unpinned-uses` to
@@ -54,9 +54,9 @@ policy entry (e.g. `chromaui/*: hash-pin`).
 `main`, mark the `Audit workflows` check as required so PRs can't merge while
 zizmor reports findings.
 
-**SARIF / Security tab instead of failing the PR:** if you'd rather have
-results land in the GitHub Security tab (code scanning) than fail the job,
-flip `advanced-security` to `true` in the reusable workflow, remove
-`annotations`, and add `security-events: write` to the job permissions. In that
-mode the action does not fail on findings, so gate merges with a ruleset that
-requires the code-scanning result.
+**SARIF / Security tab instead of failing the PR:** if you'd rather have results
+land in the GitHub Security tab (code scanning) than fail the job, flip
+`advanced-security` to `true` in the reusable workflow, remove `annotations`,
+and add `security-events: write` to the job permissions. In that mode the action
+does not fail on findings, so gate merges with a ruleset that requires the
+code-scanning result.
