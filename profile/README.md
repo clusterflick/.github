@@ -9,9 +9,10 @@ This is the Github org for the code that powers ClusterFlick 🍿
 1. [![Data Retrieved status](https://github.com/clusterflick/data-retrieved/actions/workflows/retrieve.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions)
 2. [![Data Transformed status](https://github.com/clusterflick/data-transformed/actions/workflows/transform.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions)
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
-   - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
    - [![Data Diffed status](https://github.com/clusterflick/data-diffed/actions/workflows/diff.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions)
      _(only releases when something changed)_
+     - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
+       _(runs whether or not the diff released)_
    - _also triggers `scripts` and `data-analysed`_
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions)
@@ -78,10 +79,10 @@ flowchart LR
 
     retrival --triggers--> transformation
     transformation --triggers--> calendars
-    transformation --triggers--> caching
     transformation --triggers--> diffing
     transformation --triggers--> scripts
     transformation --triggers--> analysed
+    diffing --triggers--> caching
     caching --triggers--> combination
     combination --triggers--> matching
     combination --triggers--> website
