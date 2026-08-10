@@ -22,3 +22,4 @@ runs:
         fi
         echo "npm_config_cache=$RUNNER_CACHE_ROOT/.npm-cache" >> "$GITHUB_ENV"
         echo "PLAYWRIGHT_BROWSERS_PATH=$RUNNER_CACHE_ROOT/playwright-browsers" >> "$GITHUB_ENV"
+        echo "CAMOUFOX_INSTALL_DIR=$RUNNER_CACHE_ROOT/camoufox" >> "$GITHUB_ENV"
