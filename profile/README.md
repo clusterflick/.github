@@ -7,7 +7,11 @@ This is the Github org for the code that powers ClusterFlick 🍿
 ## Build Status
 
 1. [![Data Retrieved status](https://github.com/clusterflick/data-retrieved/actions/workflows/retrieve.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions)
+   [![Retrieve unassisted runs](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/retrieve-unassisted.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+   [![Retrieve average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/retrieve-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
 2. [![Data Transformed status](https://github.com/clusterflick/data-transformed/actions/workflows/transform.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions)
+   [![Transform unassisted runs](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/transform-unassisted.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+   [![Transform average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/transform-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
    - [![Data Diffed status](https://github.com/clusterflick/data-diffed/actions/workflows/diff.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions)
      _(only releases when something changed)_
@@ -34,7 +38,8 @@ flowchart LR
     combined["data-combined"]
     matched["data-matched"]
     scripts["scripts"]
-    analysed["data-analysed"]
+    analysed["data-analysed<br>(comparisons)"]
+    runstats["data-analysed<br>(run stats)"]
 
     subgraph retrival[" "]
         direction TB
@@ -82,6 +87,7 @@ flowchart LR
     transformation --triggers--> diffing
     transformation --triggers--> scripts
     transformation --triggers--> analysed
+    transformation --triggers--> runstats
     diffing --triggers--> caching
     caching --triggers--> combination
     combination --triggers--> matching
@@ -114,12 +120,14 @@ flowchart LR
   _(manual)_
 - [![Compare Releases](https://github.com/clusterflick/data-analysed/actions/workflows/compare-releases.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-releases.yml)
   _(after each transform)_
- - [![Compare Accessible Screenings](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/compare-accessible-screenings.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml)
-   _(after each transform)_
- - [![Compare CinemaGuide Screenings](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/compare-cinemaguide-screenings.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml)
+- [![Compare Accessible Screenings](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/compare-accessible-screenings.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-accessible-screenings.yml)
+  _(after each transform)_
+- [![Compare CinemaGuide Screenings](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/compare-cinemaguide-screenings.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/compare-cinemaguide-screenings.yml)
   _(after each transform)_
 - [![Update Test Titles](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/update-test-titles.yml)
   _(after each transform)_
+- [![Pipeline Run Stats](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+  _(after each transform — feeds the stability badges above)_
 
 ### Self-hosted Runner Maintenance
 
@@ -129,7 +137,10 @@ flowchart LR
 
 ## Security Audit (zizmor)
 
-Each repo audits its GitHub Actions workflows with [zizmor](https://docs.zizmor.sh) via the shared [`.github`](https://github.com/clusterflick/.github/blob/main/.github/workflows/zizmor.yml) reusable workflow.
+Each repo audits its GitHub Actions workflows with
+[zizmor](https://docs.zizmor.sh) via the shared
+[`.github`](https://github.com/clusterflick/.github/blob/main/.github/workflows/zizmor.yml)
+reusable workflow.
 
 ### Pipeline
 
