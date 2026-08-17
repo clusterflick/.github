@@ -12,13 +12,14 @@ This is the Github org for the code that powers ClusterFlick 🍿
 2. [![Data Transformed status](https://github.com/clusterflick/data-transformed/actions/workflows/transform.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions)
    [![Transform unassisted runs](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/transform-unassisted.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
    [![Transform average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/transform-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
-   - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
    - [![Data Diffed status](https://github.com/clusterflick/data-diffed/actions/workflows/diff.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions)
      _(only releases when something changed)_
      - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
        _(runs whether or not the diff released)_
    - _also triggers `scripts` and `data-analysed`_
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
+   - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
+     _(triggers website, which serves its feeds)_
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions)
      _(triggers website if not skipped)_
    - `clusterflick.com`
@@ -83,15 +84,16 @@ flowchart LR
     end
 
     retrival --triggers--> transformation
-    transformation --triggers--> calendars
     transformation --triggers--> diffing
     transformation --triggers--> scripts
     transformation --triggers--> analysed
     transformation --triggers--> runstats
     diffing --triggers--> caching
     caching --triggers--> combination
+    combination --triggers--> calendars
     combination --triggers--> matching
     combination --triggers--> website
+    calendars --triggers--> website
     matching --"triggers (if new data)"--> website
     combination --triggers--> analysis
 
