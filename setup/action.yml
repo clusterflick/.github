@@ -38,8 +38,21 @@ runs:
     - name: Report the installed scripts commit
       shell: bash
       # Printed up front so the commit the job installed can be compared
-      # against the sha each scripts command reports as it runs.
-      run: node -p "require('./node_modules/.package-lock.json').packages['node_modules/scripts'].resolved"
+      # against the sha each scripts command reports as it runs. Not every
+      # consumer depends on scripts -- data-calendar builds from a released
+      # combined-data artifact instead -- so a repo that never declared the
+      # dep isn't an error, while one that declared it and hasn't got it is.
+      run: |
+        node -e '
+          const pkg = require("./package.json");
+          const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+          if (!deps.scripts) {
+            console.log("scripts is not a dependency of this repository");
+            process.exit(0);
+          }
+          const lock = require("./node_modules/.package-lock.json");
+          console.log(lock.packages["node_modules/scripts"].resolved);
+        '
     - name: Install Playwright browsers
       if: inputs.playwright == 'true'
       uses: nick-fields/retry@v4
