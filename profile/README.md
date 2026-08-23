@@ -19,12 +19,13 @@ This is the Github org for the code that powers ClusterFlick 🍿
    - _also triggers `scripts` and `data-analysed`_
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
-     _(triggers website, which serves its feeds)_
+     _(triggers the website once its feeds exist)_
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions)
      [![Match unassisted runs](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/match-unassisted.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
      [![Match average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/match-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
-     _(triggers website if not skipped)_
+     _(also triggers the website, if not skipped)_
    - `clusterflick.com`
+     _(triggered by the two above, not by `data-combined` directly)_
      [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
    - `analysis.clusterflick.com`
      [![Analysis site status](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions)
@@ -94,10 +95,9 @@ flowchart LR
     caching --triggers--> combination
     combination --triggers--> calendars
     combination --triggers--> matching
-    combination --triggers--> website
-    calendars --triggers--> website
-    matching --"triggers (if new data)"--> website
     combination --triggers--> analysis
+    calendars --triggers--> clusterflick.com
+    matching --"triggers (if new data)"--> clusterflick.com
 
 ```
 
