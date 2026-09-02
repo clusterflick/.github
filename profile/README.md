@@ -7,6 +7,17 @@ This is the Github org for the code that powers ClusterFlick 🍿
 [![Venue health](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/venue-health.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/venue-health.yml)
 [![LLM usage](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/llm-usage.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml)
 
+## Using the Data
+
+📄 For data you can use, see
+**[clusterflick.com/data-licence](https://clusterflick.com/data-licence)**.
+
+Most of the repositories below are internal build artifacts, published because
+the pipeline runs in the open rather than offered for reuse. Each one carries a
+`LICENSE-DATA` file saying which it is.
+
+The code in every repository is separately available under the MIT licence.
+
 ## Build Status
 
 1. [![Data Retrieved status](https://github.com/clusterflick/data-retrieved/actions/workflows/retrieve.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions)
