@@ -2,7 +2,7 @@ name: Setup
 description: Checkout, Node, and a network-resilient dependency install for Clusterflick pipeline jobs. Installs dependencies, forces the scripts git dependency to its latest commit, and reports that commit. Retries npm install (and, optionally, the Playwright browser download) so a transient registry blip doesn't fail the whole job.
 inputs:
   playwright:
-    description: Set to "true" to install Playwright browsers with system dependencies (for jobs that scrape via a browser).
+    description: Set to "true" to install Playwright's Chromium with system dependencies (for jobs that scrape via a browser).
     default: "false"
 runs:
   using: composite
@@ -53,11 +53,14 @@ runs:
           const lock = require("./node_modules/.package-lock.json");
           console.log(lock.packages["node_modules/scripts"].resolved);
         '
-    - name: Install Playwright browsers
+    - name: Install Playwright Chromium
       if: inputs.playwright == 'true'
       uses: nick-fields/retry@v4
       with:
         timeout_minutes: 15
         max_attempts: 3
         retry_wait_seconds: 30
-        command: npx playwright install --with-deps
+        # Chromium only: it's the only browser the scrapers launch through
+        # Playwright (Camoufox brings its own Firefox), so downloading Firefox
+        # and WebKit, plus their system deps, is wasted time on every job.
+        command: npx playwright install chromium --with-deps
