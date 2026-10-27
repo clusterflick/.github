@@ -96,14 +96,14 @@ The code in every repository is separately available under the MIT licence.
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    [![Combine average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/combine-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
    - [![Data Matched status](https://github.com/clusterflick/data-matched/actions/workflows/match.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions)
-    [![Match unassisted runs](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/match-unassisted.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
-    [![Match average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/match-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+     [![Match unassisted runs](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/match-unassisted.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+     [![Match average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/match-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
      - (only releases once per day)
    - [![Data Calendar status](https://github.com/clusterflick/data-calendar/actions/workflows/generate_calendar.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions)
      [![Calendar average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/calendar-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
-      - `clusterflick.com`
-        [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
-        [![Website average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/website-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+     - `clusterflick.com`
+       [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
+       [![Website average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/website-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
    - `analysis.clusterflick.com`
      [![Analysis site status](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions)
      [![Analysis site average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/analysis-site-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
@@ -226,24 +226,39 @@ reusable workflow.
 
 ### Pipeline
 
-- data-retrieved [![data-retrieved zizmor](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml)
-- data-transformed [![data-transformed zizmor](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml)
-- data-calendar [![data-calendar zizmor](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml)
-- data-cached [![data-cached zizmor](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml)
-- data-diffed [![data-diffed zizmor](https://github.com/clusterflick/data-diffed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions/workflows/zizmor.yml)
-- data-combined [![data-combined zizmor](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml)
-- data-matched [![data-matched zizmor](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml)
-- data-analysed [![data-analysed zizmor](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml)
+- data-retrieved
+  [![data-retrieved zizmor](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml)
+- data-transformed
+  [![data-transformed zizmor](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml)
+- data-calendar
+  [![data-calendar zizmor](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml)
+- data-cached
+  [![data-cached zizmor](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions/workflows/zizmor.yml)
+- data-diffed
+  [![data-diffed zizmor](https://github.com/clusterflick/data-diffed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions/workflows/zizmor.yml)
+- data-combined
+  [![data-combined zizmor](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions/workflows/zizmor.yml)
+- data-matched
+  [![data-matched zizmor](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-matched/actions/workflows/zizmor.yml)
+- data-analysed
+  [![data-analysed zizmor](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/zizmor.yml)
 
 ### Websites
 
-- clusterflick.com [![clusterflick.com zizmor](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml)
-- analysis.clusterflick.com [![analysis.clusterflick.com zizmor](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml)
+- clusterflick.com
+  [![clusterflick.com zizmor](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml)
+- analysis.clusterflick.com
+  [![analysis.clusterflick.com zizmor](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml)
 
 ### Tooling
 
-- github [![.github zizmor](https://github.com/clusterflick/.github/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/.github/actions/workflows/zizmor.yml)
-- scripts [![scripts zizmor](https://github.com/clusterflick/scripts/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/zizmor.yml)
-- generate-spotlights [![generate-spotlights zizmor](https://github.com/clusterflick/generate-spotlights/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/zizmor.yml)
-- self-hosted-workflows [![self-hosted-workflows zizmor](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/zizmor.yml)
-- release-downloader [![release-downloader zizmor](https://github.com/clusterflick/release-downloader/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/release-downloader/actions/workflows/zizmor.yml)
+- github
+  [![.github zizmor](https://github.com/clusterflick/.github/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/.github/actions/workflows/zizmor.yml)
+- scripts
+  [![scripts zizmor](https://github.com/clusterflick/scripts/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/zizmor.yml)
+- generate-spotlights
+  [![generate-spotlights zizmor](https://github.com/clusterflick/generate-spotlights/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/generate-spotlights/actions/workflows/zizmor.yml)
+- self-hosted-workflows
+  [![self-hosted-workflows zizmor](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/zizmor.yml)
+- release-downloader
+  [![release-downloader zizmor](https://github.com/clusterflick/release-downloader/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/release-downloader/actions/workflows/zizmor.yml)
