@@ -1,5 +1,13 @@
 # .github
 
+> **[Clusterflick](https://clusterflick.com)** is a free, open-source site
+> listing every film showing in London, from 450+ venues in one search.
+>
+> This repository holds the organisation profile and the reusable workflows the
+> other repositories share. See the
+> [Clusterflick organisation](https://github.com/clusterflick) for how the
+> pieces fit together.
+
 Org-level configuration and reusable workflows for the `clusterflick` org.
 
 ## Reusable workflows

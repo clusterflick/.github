@@ -1,8 +1,18 @@
 # Clusterflick
 
-This is the Github org for the code that powers ClusterFlick 🍿
+**[Clusterflick](https://clusterflick.com)** is a free, open-source site listing
+every film showing in London, from 450+ venues in one search: chains,
+independents, film clubs, festivals and pop-ups. Each film shows its screenings
+across every venue, with ratings from IMDb, Letterboxd, Rotten Tomatoes and
+Metacritic, and filters for subtitled, audio-described, relaxed and
+baby-friendly showings.
 
-🎬 Looking to see what movies are showing? View them at https://clusterflick.com
+🎬 Looking for something to watch? Head to **https://clusterflick.com** 🍿
+
+This organisation holds the code behind it. Listings are pulled from each
+venue's own website several times a day, put into one format, matched to The
+Movie Database, and built into a static site. The pipeline runs in the open as a
+chain of GitHub Actions, one repository per stage (see [Pipeline](#pipeline)).
 
 [![Venue health](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/venue-health.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/venue-health.yml)
 [![LLM usage](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/llm-usage.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml)
@@ -17,6 +27,57 @@ the pipeline runs in the open rather than offered for reuse. Each one carries a
 `LICENSE-DATA` file saying which it is.
 
 The code in every repository is separately available under the MIT licence.
+
+## Repositories
+
+**The site**
+
+- [clusterflick.com](https://github.com/clusterflick/clusterflick.com) — the
+  website
+- [api-tmdb-search](https://github.com/clusterflick/api-tmdb-search) — the
+  Cloudflare Worker behind the site's film search
+- [branding](https://github.com/clusterflick/branding) — brand guide, logos and
+  icons
+
+**The data pipeline**
+
+- [scripts](https://github.com/clusterflick/scripts) — the code behind every
+  stage, with a module for each venue and ticketing source
+- [data-retrieved](https://github.com/clusterflick/data-retrieved) — pulls raw
+  listings from venue websites and ticketing platforms
+- [data-transformed](https://github.com/clusterflick/data-transformed) — puts
+  each venue's listings into one format and matches films to TMDB
+- [data-diffed](https://github.com/clusterflick/data-diffed) — records what
+  changed between runs
+- [data-cached](https://github.com/clusterflick/data-cached) — caches TMDB
+  metadata for every film
+- [data-combined](https://github.com/clusterflick/data-combined) — merges every
+  venue into the single dataset the site is built from
+- [data-matched](https://github.com/clusterflick/data-matched) — adds ratings
+  from IMDb, Letterboxd, Rotten Tomatoes and Metacritic
+- [data-calendar](https://github.com/clusterflick/data-calendar) — calendar
+  feeds, one per venue
+- [host-non-web-sources](https://github.com/clusterflick/host-non-web-sources) —
+  hand-transcribed listings for venues with nothing on the web to read
+
+**Tooling and operations**
+
+- [data-analysed](https://github.com/clusterflick/data-analysed) — finds new
+  venues, checks listings against other sources, tracks pipeline reliability
+- [manage.clusterflick.com](https://github.com/clusterflick/manage.clusterflick.com)
+  — internal review site for the pipeline
+- [analysis.clusterflick.com](https://github.com/clusterflick/analysis.clusterflick.com)
+  — the original site, kept for reviewing the combined data
+- [generate-spotlights](https://github.com/clusterflick/generate-spotlights) —
+  social media posts
+- [self-hosted-workflows](https://github.com/clusterflick/self-hosted-workflows)
+  — workflows for the Raspberry Pi runners
+- [themoviedb-data](https://github.com/clusterflick/themoviedb-data) — TMDB
+  catalogue download for experimentation
+- [release-downloader](https://github.com/clusterflick/release-downloader) —
+  fork of a GitHub Action for downloading release assets
+- [.github](https://github.com/clusterflick/.github) — this profile and shared
+  reusable workflows
 
 ## Build Status
 
