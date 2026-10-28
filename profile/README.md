@@ -104,6 +104,9 @@ The code in every repository is separately available under the MIT licence.
      - `clusterflick.com`
        [![Website status](https://github.com/clusterflick/clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions)
        [![Website average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/website-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
+       - `manage.clusterflick.com`
+         [![Management site status](https://github.com/clusterflick/manage.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/manage.clusterflick.com/actions)
+         _(also after each venue health cycle, and nightly)_
    - `analysis.clusterflick.com`
      [![Analysis site status](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/generate_site.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions)
      [![Analysis site average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/analysis-site-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
@@ -122,6 +125,9 @@ flowchart LR
     scripts["scripts"]
     analysed["data-analysed<br>(comparisons)"]
     runstats["data-analysed<br>(run stats)"]
+    llmusage["data-analysed<br>(LLM usage log)"]
+    releaselog["data-analysed<br>(release log)"]
+    venuehealth["data-analysed<br>(venue health, hourly)"]
 
     subgraph retrival[" "]
         direction TB
@@ -162,6 +168,7 @@ flowchart LR
         direction TB
         clusterflick.com --> id1[[Generate website]]
         analysis["analysis.clusterflick.com"] --> id2[[Generate analysis site]]
+        manage["manage.clusterflick.com"] --> id3[[Generate management site]]
     end
 
     retrival --triggers--> transformation
@@ -169,13 +176,18 @@ flowchart LR
     transformation --triggers--> scripts
     transformation --triggers--> analysed
     transformation --triggers--> runstats
+    transformation --triggers--> llmusage
+    transformation --triggers--> releaselog
     diffing --triggers--> caching
     caching --triggers--> combination
     combination --triggers--> calendars
     combination --triggers--> matching
     combination --triggers--> analysis
     calendars --triggers--> clusterflick.com
+    calendars --triggers--> releaselog
     matching --"triggers (if new data)"--> clusterflick.com
+    clusterflick.com --triggers--> manage
+    venuehealth --triggers--> manage
 
 ```
 
@@ -210,6 +222,21 @@ flowchart LR
   _(after each transform)_
 - [![Pipeline Run Stats](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
   _(after each transform — feeds the stability badges above)_
+
+### Logs
+
+- [![LLM Usage Log](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml)
+  _(after each transform)_
+- [![LLM Usage Sweep](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-sweep.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-sweep.yml)
+  _(every 3 hours — catches runs the log missed)_
+- [![Release Log](https://github.com/clusterflick/data-analysed/actions/workflows/release-log.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/release-log.yml)
+  _(after each transform and calendar release)_
+- [![Venue Health](https://github.com/clusterflick/data-analysed/actions/workflows/venue-health.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/venue-health.yml)
+  _(hourly)_
+- [![Bandwidth Log](https://github.com/clusterflick/data-analysed/actions/workflows/bandwidth-log.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/bandwidth-log.yml)
+  _(hourly)_
+- [![Find Data Reusers](https://github.com/clusterflick/data-analysed/actions/workflows/find-data-reusers.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/find-data-reusers.yml)
+  _(weekly)_
 
 ### Self-hosted Runner Maintenance
 
