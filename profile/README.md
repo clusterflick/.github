@@ -49,6 +49,8 @@ The code in every repository is separately available under the MIT licence.
   each venue's listings into one format and matches films to TMDB
 - [data-diffed](https://github.com/clusterflick/data-diffed) — records what
   changed between runs
+- [data-backedup](https://github.com/clusterflick/data-backedup) — keeps a copy
+  of every transformed release off GitHub, one archive per week
 - [data-cached](https://github.com/clusterflick/data-cached) — caches TMDB
   metadata for every film
 - [data-combined](https://github.com/clusterflick/data-combined) — merges every
@@ -92,6 +94,8 @@ The code in every repository is separately available under the MIT licence.
      _(only releases when something changed)_
      - [![Data Cached status](https://github.com/clusterflick/data-cached/actions/workflows/cache.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions)
        _(runs whether or not the diff released)_
+   - [![Data Backed Up status](https://github.com/clusterflick/data-backedup/actions/workflows/back-up.yml/badge.svg)](https://github.com/clusterflick/data-backedup/actions)
+     _(archives each finished week to Cloudflare R2; also daily)_
    - _also triggers `scripts` PR and `data-analysed`_ analysis scripts
 3. [![Data Combined status](https://github.com/clusterflick/data-combined/actions/workflows/combine.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions)
    [![Combine average duration](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/combine-duration.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
@@ -120,6 +124,8 @@ flowchart LR
     calendar["data-calendar"]
     cached["data-cached"]
     diffed["data-diffed"]
+    backedup["data-backedup"]
+    nonweb["host-non-web-sources"]
     combined["data-combined"]
     matched["data-matched"]
     scripts["scripts"]
@@ -154,6 +160,11 @@ flowchart LR
         diffed --"if changed"--> diffed-release>Release]
     end
 
+    subgraph backup[" "]
+        direction TB
+        backedup --"each finished week"--> backup-archive[("R2 archive")]
+    end
+
     subgraph combination[" "]
         direction TB
         combined --> combined-release>Release]
@@ -171,7 +182,9 @@ flowchart LR
         manage["manage.clusterflick.com"] --> id3[[Generate management site]]
     end
 
+    nonweb -.->|read by| retrival
     retrival --triggers--> transformation
+    transformation --triggers--> backup
     transformation --triggers--> diffing
     transformation --triggers--> scripts
     transformation --triggers--> analysed
@@ -199,6 +212,11 @@ flowchart LR
   [![Scripts CI](https://github.com/clusterflick/scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/ci.yml)
 - `clusterflick.com`
   [![Website CI](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml)
+- `api-tmdb-search`
+  [![Search API test and deploy](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml)
+- `data-retrieved`
+  [![Experiment](https://github.com/clusterflick/data-retrieved/actions/workflows/experiment.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/experiment.yml)
+  _(manual — one venue on a chosen runner)_
 
 ### Social Media / Spotlights
 
@@ -223,6 +241,15 @@ flowchart LR
 - [![Pipeline Run Stats](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/workflow-run-stats.yml)
   _(after each transform — feeds the stability badges above)_
 
+### Automatic Re-runs
+
+Failed runs of these stages are re-run automatically, up to 3 attempts.
+
+- [![Rerun Data Diffed](https://github.com/clusterflick/data-diffed/actions/workflows/rerun-on-failure.yml/badge.svg)](https://github.com/clusterflick/data-diffed/actions/workflows/rerun-on-failure.yml)
+- [![Rerun Data Cached](https://github.com/clusterflick/data-cached/actions/workflows/rerun-on-failure.yml/badge.svg)](https://github.com/clusterflick/data-cached/actions/workflows/rerun-on-failure.yml)
+- [![Rerun Data Combined](https://github.com/clusterflick/data-combined/actions/workflows/rerun-on-failure.yml/badge.svg)](https://github.com/clusterflick/data-combined/actions/workflows/rerun-on-failure.yml)
+- [![Rerun Data Calendar](https://github.com/clusterflick/data-calendar/actions/workflows/rerun-on-failure.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions/workflows/rerun-on-failure.yml)
+
 ### Logs
 
 - [![LLM Usage Log](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml/badge.svg)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml)
@@ -243,6 +270,10 @@ flowchart LR
 - [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
 - [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
 - [![Check SSD Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml)
+- [![Check SD Card Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml)
+  _(manual)_
+- [![Restart Router](https://github.com/clusterflick/data-retrieved/actions/workflows/restart-router.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/restart-router.yml)
+  _(manual — new public IP for every self-hosted runner)_
 
 ## Security Audit (zizmor)
 
@@ -257,6 +288,8 @@ reusable workflow.
   [![data-retrieved zizmor](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/zizmor.yml)
 - data-transformed
   [![data-transformed zizmor](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-transformed/actions/workflows/zizmor.yml)
+- data-backedup
+  [![data-backedup zizmor](https://github.com/clusterflick/data-backedup/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-backedup/actions/workflows/zizmor.yml)
 - data-calendar
   [![data-calendar zizmor](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/data-calendar/actions/workflows/zizmor.yml)
 - data-cached
@@ -276,6 +309,8 @@ reusable workflow.
   [![clusterflick.com zizmor](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml)
 - analysis.clusterflick.com
   [![analysis.clusterflick.com zizmor](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml)
+- api-tmdb-search
+  [![api-tmdb-search zizmor](https://github.com/clusterflick/api-tmdb-search/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/zizmor.yml)
 
 ### Tooling
 
