@@ -53,14 +53,27 @@ runs:
           const lock = require("./node_modules/.package-lock.json");
           console.log(lock.packages["node_modules/scripts"].resolved);
         '
+    # Chromium only: it's the only browser the scrapers launch through
+    # Playwright (Camoufox brings its own Firefox), so downloading Firefox and
+    # WebKit, plus their system deps, is wasted time on every job.
     - name: Install Playwright Chromium
-      if: inputs.playwright == 'true'
+      if: inputs.playwright == 'true' && runner.environment == 'github-hosted'
       uses: nick-fields/retry@v4
       with:
         timeout_minutes: 15
         max_attempts: 3
         retry_wait_seconds: 30
-        # Chromium only: it's the only browser the scrapers launch through
-        # Playwright (Camoufox brings its own Firefox), so downloading Firefox
-        # and WebKit, plus their system deps, is wasted time on every job.
         command: npx playwright install chromium --with-deps
+    # No --with-deps on self-hosted: the system packages are already on the
+    # machine, and several runners share one, so their concurrent apt-gets
+    # fight over the dpkg lock and fail the install ("Could not get lock
+    # /var/lib/apt/lists/lock"). A Playwright bump that needs a new package
+    # shows up as a launch error naming the missing library.
+    - name: Install Playwright Chromium (self-hosted)
+      if: inputs.playwright == 'true' && runner.environment == 'self-hosted'
+      uses: nick-fields/retry@v4
+      with:
+        timeout_minutes: 15
+        max_attempts: 3
+        retry_wait_seconds: 30
+        command: npx playwright install chromium
