@@ -267,11 +267,8 @@ Failed runs of these stages are re-run automatically, up to 3 attempts.
 
 ### Self-hosted Runner Maintenance
 
-- [![Runner Stats](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/runner-stats.yml)
-- [![Reset Dependencies](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/free-space.yml)
-- [![Check SSD Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/chcek-runner-storage.yml)
-- [![Check SD Card Health](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/check-sd-card.yml)
-  _(manual)_
+- [![Diagnose Runner Network](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/diagnose-runner-network.yml/badge.svg)](https://github.com/clusterflick/self-hosted-workflows/actions/workflows/diagnose-runner-network.yml)
+  _(manual — speed, latency and GitHub reachability of the shared 5G link)_
 - [![Restart Router](https://github.com/clusterflick/data-retrieved/actions/workflows/restart-router.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/restart-router.yml)
   _(manual — new public IP for every self-hosted runner)_
 
