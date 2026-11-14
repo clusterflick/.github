@@ -34,6 +34,7 @@ runs:
         # install can leave a stale scripts in node_modules -- which the
         # pipeline then runs. `npm update` re-checks the remote and rewrites the
         # pin. data-analysed is a nested git dep of scripts; same reason.
+        # Repeated in the report step's lockfile recovery -- keep them in step.
         command: npm update --no-audit --no-fund scripts data-analysed
     - name: Report the installed scripts commit
       shell: bash
@@ -43,16 +44,36 @@ runs:
       # combined-data artifact instead -- so a repo that never declared the
       # dep isn't an error, while one that declared it and hasn't got it is.
       run: |
-        node -e '
-          const pkg = require("./package.json");
-          const deps = { ...pkg.dependencies, ...pkg.devDependencies };
-          if (!deps.scripts) {
-            console.log("scripts is not a dependency of this repository");
-            process.exit(0);
-          }
-          const lock = require("./node_modules/.package-lock.json");
-          console.log(lock.packages["node_modules/scripts"].resolved);
-        '
+        report() {
+          node -e '
+            const fs = require("fs");
+            const pkg = require("./package.json");
+            const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+            if (!deps.scripts) {
+              console.log("scripts is not a dependency of this repository");
+              process.exit(0);
+            }
+            if (!fs.existsSync("./node_modules/.package-lock.json")) process.exit(2);
+            const lock = require("./node_modules/.package-lock.json");
+            console.log(lock.packages["node_modules/scripts"].resolved);
+          '
+        }
+        status=0; report || status=$?
+        if [ "$status" -eq 2 ]; then
+          # npm deletes its hidden lockfile when it can't write it and still
+          # exits 0 (arborist's Shrinkwrap.save), so nothing brings the file
+          # back except another npm run -- waiting or re-reading won't. Keep
+          # this command identical to the "Update to the latest scripts" step.
+          echo "node_modules/.package-lock.json is missing - running npm update again"
+          npm update --no-audit --no-fund scripts data-analysed
+          status=0; report || status=$?
+          if [ "$status" -eq 2 ]; then
+            # The install itself succeeded; only the report is lost.
+            echo "::warning::node_modules/.package-lock.json is still missing - cannot report the installed scripts commit"
+            exit 0
+          fi
+        fi
+        exit "$status"
     # Chromium only: it's the only browser the scrapers launch through
     # Playwright (Camoufox brings its own Firefox), so downloading Firefox and
     # WebKit, plus their system deps, is wasted time on every job.
