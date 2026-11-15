@@ -13,6 +13,9 @@ This organisation holds the code behind it. Listings are pulled from each
 venue's own website several times a day, put into one format, matched to The
 Movie Database, and built into a static site. The pipeline runs in the open as a
 chain of GitHub Actions, one repository per stage (see [Pipeline](#pipeline)).
+What can't be static, such as readers' public profiles, film search and the MCP
+server for AI assistants, is served by Cloudflare Workers (see
+[Workers](#repositories)).
 
 [![Venue health](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/venue-health.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/venue-health.yml)
 [![LLM usage](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/llm-usage.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml)
@@ -34,10 +37,21 @@ The code in every repository is separately available under the MIT licence.
 
 - [clusterflick.com](https://github.com/clusterflick/clusterflick.com) — the
   website
-- [api-tmdb-search](https://github.com/clusterflick/api-tmdb-search) — the
-  Cloudflare Worker behind the site's film search
 - [branding](https://github.com/clusterflick/branding) — brand guide, logos and
   icons
+
+**Workers**
+
+Cloudflare Workers that answer readers' requests live, deployed from CI on each
+push to `main`.
+
+- [api-profiles](https://github.com/clusterflick/api-profiles) — readers'
+  public profiles at `clusterflick.com/u/<handle>/`
+- [api-tmdb-search](https://github.com/clusterflick/api-tmdb-search) — film
+  search at `clusterflick.com/api/tmdb/*`, for adding films that aren't showing
+  to a reader's lists
+- [api-mcp](https://github.com/clusterflick/api-mcp) — the MCP server at
+  `mcp.clusterflick.com`, for readers' own AI assistants to search the listings
 
 **The data pipeline**
 
@@ -212,11 +226,20 @@ flowchart LR
   [![Scripts CI](https://github.com/clusterflick/scripts/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/scripts/actions/workflows/ci.yml)
 - `clusterflick.com`
   [![Website CI](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/ci.yml)
-- `api-tmdb-search`
-  [![Search API test and deploy](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml)
 - `data-retrieved`
   [![Experiment](https://github.com/clusterflick/data-retrieved/actions/workflows/experiment.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/experiment.yml)
   _(manual — one venue on a chosen runner)_
+
+### Workers
+
+Each tested and deployed on push to `main`.
+
+- `api-profiles`
+  [![Profiles test and deploy](https://github.com/clusterflick/api-profiles/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-profiles/actions/workflows/deploy.yml)
+- `api-tmdb-search`
+  [![Search API test and deploy](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml)
+- `api-mcp`
+  [![MCP server test and deploy](https://github.com/clusterflick/api-mcp/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-mcp/actions/workflows/deploy.yml)
 
 ### Social Media / Spotlights
 
@@ -306,8 +329,15 @@ reusable workflow.
   [![clusterflick.com zizmor](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/zizmor.yml)
 - analysis.clusterflick.com
   [![analysis.clusterflick.com zizmor](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/analysis.clusterflick.com/actions/workflows/zizmor.yml)
+
+### Workers
+
+- api-profiles
+  [![api-profiles zizmor](https://github.com/clusterflick/api-profiles/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-profiles/actions/workflows/zizmor.yml)
 - api-tmdb-search
   [![api-tmdb-search zizmor](https://github.com/clusterflick/api-tmdb-search/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/zizmor.yml)
+- api-mcp
+  [![api-mcp zizmor](https://github.com/clusterflick/api-mcp/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-mcp/actions/workflows/zizmor.yml)
 
 ### Tooling
 
