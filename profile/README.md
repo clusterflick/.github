@@ -13,9 +13,9 @@ This organisation holds the code behind it. Listings are pulled from each
 venue's own website several times a day, put into one format, matched to The
 Movie Database, and built into a static site. The pipeline runs in the open as a
 chain of GitHub Actions, one repository per stage (see [Pipeline](#pipeline)).
-What can't be static, such as readers' public profiles, film search and the MCP
-server for AI assistants, is served by Cloudflare Workers (see
-[Workers](#repositories)).
+What can't be static, such as readers' public profiles, film search, email
+alerts and the MCP server for AI assistants, is served by Cloudflare Workers
+(see [Workers](#repositories)).
 
 [![Venue health](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/venue-health.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/venue-health.yml)
 [![LLM usage](<https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/alistairjcbrown/8d80a800fce80abc822d054b9e91ba0c/raw/llm-usage.json&logo=github&logoColor=rgba(255%2C255%2C255%2C0.5)&labelColor=343b43>)](https://github.com/clusterflick/data-analysed/actions/workflows/llm-usage-log.yml)
@@ -36,14 +36,18 @@ The code in every repository is separately available under the MIT licence.
 **The site**
 
 - [clusterflick.com](https://github.com/clusterflick/clusterflick.com) — the
-  website
+  website, and the npm packages the Workers share with it:
+  [`@clusterflick/catalogue`](https://www.npmjs.com/package/@clusterflick/catalogue)
+  (the listings, their filters and how to read them) and
+  [`@clusterflick/accounts`](https://www.npmjs.com/package/@clusterflick/accounts)
+  (a reader's account, as a Worker reads it)
 - [branding](https://github.com/clusterflick/branding) — brand guide, logos and
   icons
 
 **Workers**
 
-Cloudflare Workers that answer readers' requests live, deployed from CI on each
-push to `main`.
+Cloudflare Workers that answer readers' requests live, or run on a schedule,
+deployed from CI on each push to `main`.
 
 - [api-profiles](https://github.com/clusterflick/api-profiles) — readers'
   public profiles at `clusterflick.com/u/<handle>/`
@@ -52,6 +56,9 @@ push to `main`.
   to a reader's lists
 - [api-mcp](https://github.com/clusterflick/api-mcp) — the MCP server at
   `mcp.clusterflick.com`, for readers' own AI assistants to search the listings
+- [api-alerts](https://github.com/clusterflick/api-alerts) — email alerts from
+  `alerts.clusterflick.com`: a nightly email when films on a reader's watchlist
+  are showing
 
 **The data pipeline**
 
@@ -229,6 +236,12 @@ flowchart LR
 - `data-retrieved`
   [![Experiment](https://github.com/clusterflick/data-retrieved/actions/workflows/experiment.yml/badge.svg)](https://github.com/clusterflick/data-retrieved/actions/workflows/experiment.yml)
   _(manual — one venue on a chosen runner)_
+- `@clusterflick/catalogue`
+  [![Publish catalogue](https://github.com/clusterflick/clusterflick.com/actions/workflows/publish-catalogue.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/publish-catalogue.yml)
+  _(on a version bump)_
+- `@clusterflick/accounts`
+  [![Publish accounts](https://github.com/clusterflick/clusterflick.com/actions/workflows/publish-accounts.yml/badge.svg)](https://github.com/clusterflick/clusterflick.com/actions/workflows/publish-accounts.yml)
+  _(on a version bump)_
 
 ### Workers
 
@@ -240,6 +253,9 @@ Each tested and deployed on push to `main`.
   [![Search API test and deploy](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/deploy.yml)
 - `api-mcp`
   [![MCP server test and deploy](https://github.com/clusterflick/api-mcp/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-mcp/actions/workflows/deploy.yml)
+- `api-alerts`
+  [![Alerts test and deploy](https://github.com/clusterflick/api-alerts/actions/workflows/deploy.yml/badge.svg)](https://github.com/clusterflick/api-alerts/actions/workflows/deploy.yml)
+  _(runs nightly at 20:00 UTC)_
 
 ### Social Media / Spotlights
 
@@ -338,6 +354,8 @@ reusable workflow.
   [![api-tmdb-search zizmor](https://github.com/clusterflick/api-tmdb-search/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-tmdb-search/actions/workflows/zizmor.yml)
 - api-mcp
   [![api-mcp zizmor](https://github.com/clusterflick/api-mcp/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-mcp/actions/workflows/zizmor.yml)
+- api-alerts
+  [![api-alerts zizmor](https://github.com/clusterflick/api-alerts/actions/workflows/zizmor.yml/badge.svg)](https://github.com/clusterflick/api-alerts/actions/workflows/zizmor.yml)
 
 ### Tooling
 
