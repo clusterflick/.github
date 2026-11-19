@@ -1,16 +1,19 @@
 # Clusterflick
 
-**[Clusterflick](https://clusterflick.com)** is a free, open-source site listing
-every film showing in London, from 450+ venues in one search: chains,
-independents, film clubs, festivals and pop-ups. Each film shows its screenings
-across every venue, with ratings from IMDb, Letterboxd, Rotten Tomatoes and
-Metacritic, and filters for subtitled, audio-described, relaxed and
-baby-friendly showings.
+**[Clusterflick](https://clusterflick.com)** is the most complete guide to film
+in London: every listing from 500+ venues in one search, from chains and
+independents to pub back rooms, film clubs, festivals and pop-ups. Each film
+shows its screenings across every venue, and each film club and festival its
+whole programme, with ratings from IMDb, Letterboxd, Rotten Tomatoes and
+Metacritic side by side. Every listing is read for format, accessibility and
+occasion, so you can filter for 35mm, subtitled, relaxed, baby-friendly or a Q&A.
+Free and open source.
 
 🎬 Looking for something to watch? Head to **https://clusterflick.com** 🍿
 
 This organisation holds the code behind it. Listings are pulled from each
-venue's own website several times a day, put into one format, matched to The
+venue's own website, and the ticketing and events sites it sells through,
+several times a day, put into one format, matched to The
 Movie Database, and built into a static site. The pipeline runs in the open as a
 chain of GitHub Actions, one repository per stage (see [Pipeline](#pipeline)).
 What can't be static, such as readers' public profiles, film search, email
